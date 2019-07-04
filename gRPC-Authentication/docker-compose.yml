@@ -1,0 +1,13 @@
+version: '3'
+services:
+  auth_server:
+    build: .
+    command: go run server.go
+    volumes:
+      - .:/go/src/auth_server
+    working_dir: /go/src/auth_server
+    ports:
+      - "50051:50051"
+    environment:
+      PORT: 50051
+    image: "auth-server"

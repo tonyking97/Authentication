@@ -1,0 +1,60 @@
+{
+  "_id": "5cc2ad6f881da900c97f2fd2",
+  "ff_id": "64c4e7e8-bedc-450e-60eb-efe8ecf42262",
+  "fs_id": "2b3c8972-8679-4708-4438-f09b1b2f05f7",
+  "token": "dysAfUieLzXZ+OLBQ1U6NRT+bVRcIlJtfhZxu1cDIJX9xX8LNpW6QL4HUV9t+SnUO7lba6QCkTAwI+i4lvv7Xl8rY4b/LZ/GI/QudcDIJiMVy4Be3FmolBfvNx+XbTA9HGrrldF0AzWmyktogLWf3hviQVPFKTTamVDNwemM5aqAEroeapUB3NgKP8JXQ6BTWwudZZGWLOJ3l7RciTC0v4+3R7GSakMkH43Wz3WVVs2jTGbeQjlGgpf+Vp1L9OpcZBDo7+/UEl5KlIqchNyVIhn3a/iD/vBAyONTAGtBHjHEGWu/Usg6PopdYJaGKHzpHFWhingpcjuw07u3YWzWrDVOT22/SxBZ+eT2WmkxIy6pcMZ9xRyUqZyjZkHUXETnnCglWW+tIqL6XtXHunkwBcb1d5XSpzI3HolvlhBvMIU414fJyCoThjOKZWzH1fr5jkqyOtBPdVJfZ9+Bsw0yVinNjWFEaGlSQyohD3WkCDu/7KQ5NrBdKZwhHewstCAop8UqQeef/e5/X/p1G0wm9Xg7N7MciaIZjYHKb4sz4CuMyCT1r66VpSRkePdvVi4/dM1Y9pQ1TRCNMoO4t6yKWpuLbWgRCvDpS/Y+UcjskDhEZsMYXTR3TFICtbsb108REofWVwT1u9g08LxeBoTsTpFihQALRATspqy5rzpMlpk=",
+  "status": "active",
+  "logged_Time": "1556262255",
+  "exipry_Time": "1556262256",
+  "ip_details": {
+    "ip": "103.114.211.49",
+    "type": "ipv4",
+    "continent_code": "AS",
+    "continent_name": "Asia",
+    "country_code": "IN",
+    "country_name": "India",
+    "region_code": "TN",
+    "region_name": "Tamil Nadu",
+    "city": "Coimbatore",
+    "zip": "641014",
+    "latitude": 10.991,
+    "longitude": 76.9667,
+    "location": {
+      "geoname_id": "1273865",
+      "capital": "New Delhi",
+      "languages": [
+        {
+          "code": "hi",
+          "name": "Hindi",
+          "native": "हिन्दी"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "native": "English"
+        }
+      ],
+      "country_flag": "http://assets.ipstack.com/flags/in.svg",
+      "country_flag_emoji": "🇮🇳",
+      "country_flag_emoji_unicode": "U+1F1EE U+1F1F3",
+      "calling_code": "91",
+      "is_eu": false
+    }
+  },
+  "referer": "http://localhost:3000/",
+  "isBot": false,
+  "isMobile": false,
+  "browser_Name": "Firefox",
+  "browser_Version": "67.0",
+  "mozillaVersion": "5.0",
+  "engine_Name": "Gecko",
+  "engine_Version": "20100101",
+  "localization": "en-US",
+  "os_full_name": "Intel Mac OS X 10.14",
+  "os_name": "Mac OS X",
+  "os_version": "10.14",
+  "platform": "Macintosh",
+  "time_zone": "",
+  "app_name": "",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0) Gecko/20100101 Firefox/67.0"
+}

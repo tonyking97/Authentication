@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package authpb;
+
+message CheckUsernameRequest {
+    string username = 1;
+}
+
+message CheckUsernameResponse {
+    string username = 1;
+    string avatar = 2;
+}
+
+service AuthService {
+    rpc CheckUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
+}
