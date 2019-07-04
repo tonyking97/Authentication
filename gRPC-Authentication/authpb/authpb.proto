@@ -2,23 +2,39 @@ syntax = "proto3";
 
 package authpb;
 
-service AuthService {
-    rpc CheckServerStatus (CheckServerStatusRequest) returns (CheckServerStatusResponse);
-    rpc CheckUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
-    rpc RegisterAccount (RegisterAccountRequest) returns (RegisterAccountResponse);
-    rpc Login (LoginRequest) returns (LoginResponse);
+import "google/api/annotations.proto";
 
-    rpc UpdateAccount (UpdateAccountRequest) returns (UpdateAccountResponse);
-    rpc GetAccountDetails (GetAccountDetailsRequest) returns (GetAccountDetailsResponse);
+service AuthService {
+
+    rpc CheckServerStatus(CheckServerStatusRequest) returns (CheckServerStatusResponse){
+        option (google.api.http).get = "/api/v1/checkserverstatus";
+    }
+
+    rpc CheckUsername (CheckUsernameRequest) returns (CheckUsernameResponse){
+        option (google.api.http) = {
+            post : "/api/v1/checkusername"
+            body : "*"
+        };
+    }
+    rpc SendBuildFileToClient(UploadRequest) returns (stream Chunk) {}
+
+    rpc GetSystemDetails(GetSystemDetailsRequest) returns (GetSystemDetailsResponse);
+
+    rpc UsernameAvailability(UsernameAvailabilityRequest) returns (UsernameAvailabilityResponse);
+    rpc EmailAvailability(EmailAvailabilityRequest) returns (EmailAvailabilityResponse);
+    rpc RegisterAccount(RegisterAccountRequest) returns (RegisterAccountResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+
+    rpc UpdateAccount(UpdateAccountRequest) returns (UpdateAccountResponse);
+    rpc GetAccountDetails(GetAccountDetailsRequest) returns (GetAccountDetailsResponse);
     rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
 
     rpc GetAllAccounts (GetAllAccountsRequest) returns (stream GetAllAccountsResponse);
     rpc GetAllSessionDetails (GetAllSessionDetailsRequest) returns (stream GetAllSessionDetailsResponse);
 }
-message CheckServerStatusRequest {
-}
+message CheckServerStatusRequest{}
 
-message CheckServerStatusResponse {
+message CheckServerStatusResponse{
     string server_name = 1;
     string host = 2;
     string port = 3;
@@ -37,59 +53,59 @@ message RegisterAccountRequest {
     bool govt_terms = 8;
 }
 
-message RegisterAccountResponse {
+message RegisterAccountResponse{
     string result = 1;
     string status = 2;
 }
 
-message LoginRequest {
+message LoginRequest{
     string username = 1;
     string password = 2;
 }
 
-message LoginResponse {
+message LoginResponse{
     string token = 1;
 }
 
-message UpdateAccountRequest {
+message UpdateAccountRequest{
     string first_name = 1;
     string last_name = 2;
     string username = 3;
     string email = 4;
 }
 
-message UpdateAccountResponse {
+message UpdateAccountResponse{
     string result = 1;
     string status = 2;
 }
 
-message GetAccountDetailsRequest {
+message GetAccountDetailsRequest{
 }
 
-message GetAccountDetailsResponse {
+message GetAccountDetailsResponse{
     string first_name = 1;
     string last_name = 2;
     string username = 3;
     string email = 4;
 }
 
-message ChangePasswordRequest {
+message ChangePasswordRequest{
     string old_password = 1;
     string new_password = 2;
     string confirm_password = 3;
 }
 
-message ChangePasswordResponse {
+message ChangePasswordResponse{
     string result = 1;
     string status = 2;
 }
 
-message GetAllAccountsRequest {
+message GetAllAccountsRequest{
     int64 skip = 2;
     int64 limit = 3;
 }
 
-message GetAllAccountsResponse {
+message GetAllAccountsResponse{
     string ff_id = 1;
     string first_name = 2;
     string last_name = 3;
@@ -117,4 +133,54 @@ message CheckUsernameRequest {
 message CheckUsernameResponse {
     string username = 1;
     string avatar = 2;
+}
+
+message UsernameAvailabilityRequest {
+    string username = 1;
+}
+
+message UsernameAvailabilityResponse {
+    bool available = 1;
+}
+
+message EmailAvailabilityRequest {
+    string email = 1;
+}
+
+message EmailAvailabilityResponse {
+    bool available = 1;
+}
+
+
+message GetSystemDetailsRequest {
+    string hardware_name = 1;
+    string hardware_address = 2;
+    string ip_address = 3;
+    string os = 4;
+    string cpu = 5;
+}
+
+message GetSystemDetailsResponse {
+    string status = 1;
+    string message = 2;
+}
+
+message Chunk {
+    bytes Content = 1;
+    string totalSize = 2;
+    string received = 3;
+}
+
+message UploadRequest{
+}
+
+enum UploadStatusCode {
+    Unknown = 0;
+    Ok = 1;
+    Failed = 2;
+}
+
+message UploadStatus {
+    string Message = 1;
+    UploadStatusCode Code = 2;
 }

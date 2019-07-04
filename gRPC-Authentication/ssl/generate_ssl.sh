@@ -12,9 +12,13 @@
 # Summary
 # Private files: ca.key, server.key, server.pem, server.crt
 # "Share" files: ca.crt (needed by the client), server.csr (needed by the CA)
+SERVER = $1
+CUST_NAME = $2
 
 # Changes these CN's to match your hosts in your environment if needed.
 SERVER_CN=localhost
+
+mkdir
 
 # Step 1: Generate Certificate Authority + Trust Certificate (ca.crt)
 openssl genrsa -passout pass:1111 -des3 -out ca.key 4096

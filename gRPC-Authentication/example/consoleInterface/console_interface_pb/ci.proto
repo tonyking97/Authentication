@@ -1,0 +1,21 @@
+//TODO() generate proto file following command => protoc ./ci.proto -I. --go_out=plugins=grpc:.
+
+syntax = "proto3";
+
+package ci;
+
+service ConsoleInterface {
+    rpc Status(StatusRequest) returns (StatusResponse);
+
+}
+
+message StatusRequest{}
+
+message StatusResponse{
+    string name = 1;
+    string description = 2;
+    string host = 3;
+    string ip_address = 4;
+    string port = 5;
+    string status = 6;
+}

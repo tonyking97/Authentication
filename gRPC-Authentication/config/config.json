@@ -3,15 +3,15 @@
   "server": {
     "type": "GRPC",
     "host": "localhost",
-    "port": "50051"
+    "port": "8080"
   },
   "optional_server": {
     "type": "REST",
     "host": "localhost",
-    "port": "50052"
+    "port": "8081"
   },
   "database": {
-    "mongo_db": {
+    "mongo_db" : {
       "host": "localhost",
       "port": "37017"
     }

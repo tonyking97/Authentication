@@ -9,9 +9,9 @@ import (
 	"os"
 )
 
-const configFile = "config/config.json"
+const configFile  = "config/config.json"
 
-func main() {
+func main()  {
 
 	file, _ := os.Open(configFile)
 	defer file.Close()
@@ -30,6 +30,15 @@ func main() {
 			log.Fatalf("Failed to start gRPC server: %s", err)
 		}
 	}()
+
+	//go func() {
+	//	tls := serverConfig.TLS
+	//	err := network_method.StartRESTServer(serverConfig.OptionalServer,serverConfig.Server, tls.Certificate)
+	//	if err != nil {
+	//		log.Fatalf("Failed to start REST server: %s", err)
+	//	}
+	//}()
+
 
 	// infinite loop
 	log.Printf("Entering infinite loop..!!")

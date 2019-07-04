@@ -22,7 +22,7 @@ func init() {
 	grpclog.SetLoggerV2(serverLog)
 }
 
-func StartGRPCServer(grpcNetwork config.ServerNodes, tls config.TLSNodes) error {
+func  StartGRPCServer(grpcNetwork config.ServerNodes, tls config.TLSNodes)  error{
 
 	// create a listener on TCP port
 	lis, err := net.Listen("tcp", grpcNetwork.Host+":"+grpcNetwork.Port)
@@ -33,8 +33,8 @@ func StartGRPCServer(grpcNetwork config.ServerNodes, tls config.TLSNodes) error 
 	// Create an empty array of gRPC options
 	var options []grpc.ServerOption
 
-	if tls.Active {
-		cred, err := credentials.NewServerTLSFromFile(tls.Certificate, tls.KeyFile)
+	if tls.Active{
+		cred, err := credentials.NewServerTLSFromFile(tls.Certificate,tls.KeyFile)
 		if err != nil {
 			log.Fatalf("Error : %v", err)
 		}
@@ -42,14 +42,14 @@ func StartGRPCServer(grpcNetwork config.ServerNodes, tls config.TLSNodes) error 
 	}
 
 	// Interceptor
-	options = append(options, grpc.StreamInterceptor(middleware.AuthStreamInterceptor), grpc.UnaryInterceptor(middleware.AuthUnaryInterceptor))
+	options = append(options,grpc.StreamInterceptor(middleware.AuthStreamInterceptor),grpc.UnaryInterceptor(middleware.AuthUnaryInterceptor))
 
 	// create a gRPC server object
-	gRPC := grpc.NewServer(
-		options...,
+	gRPC:= grpc.NewServer(
+		options...
 	)
 
-	authpb.RegisterAuthServiceServer(gRPC, &service.AuthServer{})
+	authpb.RegisterAuthServiceServer(gRPC,&service.AuthServer{})
 	log.Printf("Starting HTTP/2 gRPC Authentication Server on %s : %s", grpcNetwork.Host, grpcNetwork.Port)
 
 	reflection.Register(gRPC)

@@ -1,0 +1,26 @@
+//TODO() generate proto file following command => protoc ./transfer.proto -I. --go_out=plugins=grpc:.
+
+syntax = "proto3";
+
+package pb;
+
+service GuploadService {
+    rpc Upload(stream Chunk) returns (UploadStatus) {}
+}
+
+message Chunk {
+    bytes Content = 1;
+    string totalSize = 2;
+    string received = 3;
+}
+
+enum UploadStatusCode {
+    Unknown = 0;
+    Ok = 1;
+    Failed = 2;
+}
+
+message UploadStatus {
+    string Message = 1;
+    UploadStatusCode Code = 2;
+}

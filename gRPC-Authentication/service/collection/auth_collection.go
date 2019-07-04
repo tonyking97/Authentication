@@ -17,39 +17,39 @@ func MongoDBInit() {
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 	if Client == nil {
 		var err error = nil
-		Client, err = mongo.Connect(context.TODO(), clientOptions)
-		if err != nil {
+		Client , err = mongo.Connect(context.TODO(), clientOptions)
+		if err!= nil{
 			log.Fatal(err)
 		}
 	}
 
 	err := Client.Ping(context.TODO(), nil)
 
-	if err != nil {
+	if err!= nil{
 		log.Fatal(err)
 	}
 	log.Println("Connected to MongoDB :) ")
 }
 
-func AccountCollectionInit() *mongo.Collection {
-	if AccountCollection == nil {
+func AccountCollectionInit() *mongo.Collection{
+	if AccountCollection == nil{
 		AccountCollection = Client.Database("authentication").Collection("account")
 
 		_, err := AccountCollection.Indexes().CreateMany(context.Background(), []mongo.IndexModel{
 			{
-				Keys: bson.M{
-					"email": 1,
+				Keys:bson.M{
+					"email":1,
 				},
 				Options: options.Index().SetUnique(true),
 			},
 			{
-				Keys: bson.M{
-					"username": 1,
+				Keys:bson.M{
+					"username":1,
 				},
 				Options: options.Index().SetUnique(true),
 			},
 		})
-		if err != nil {
+		if err!= nil{
 			log.Println(err)
 		}
 	}
@@ -57,19 +57,19 @@ func AccountCollectionInit() *mongo.Collection {
 	return AccountCollection
 }
 
-func SessionCollectionInit() *mongo.Collection {
-	if SessionCollection == nil {
+func SessionCollectionInit()  *mongo.Collection{
+	if SessionCollection == nil{
 		SessionCollection = Client.Database("authentication").Collection("session")
 
 		_, err := SessionCollection.Indexes().CreateMany(context.Background(), []mongo.IndexModel{
 			{
-				Keys: bson.M{
-					"browser_details.app_name": 1,
+				Keys:bson.M{
+					"browser_details.app_name":1,
 				},
 				Options: options.Index().SetUnique(true),
 			},
 		})
-		if err != nil {
+		if err!= nil{
 			log.Println(err)
 		}
 	}

@@ -4,7 +4,7 @@ import (
 	"honnef.co/go/js/dom"
 )
 
-func main() {
+func main()  {
 	d := dom.GetWindow().Document()
 
 	clickme := d.GetElementByID("clickme").(*dom.HTMLButtonElement)
