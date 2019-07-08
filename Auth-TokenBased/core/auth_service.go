@@ -20,7 +20,7 @@ import (
 * Definition : Contains logical methods for the authentication service
  */
 
-func Login(requestUser *models.User, r *http.Request) (int, []byte) {
+func Login(requestUser *models.User,userAgent string) (int, string) {
 
 	authBackend := InitJWTAuthenticationBackend()
 	valid, err, ff_id := authBackend.Authenticate(requestUser)
@@ -29,10 +29,11 @@ func Login(requestUser *models.User, r *http.Request) (int, []byte) {
 	if valid {
 		token, err, timeNow, expTime := authBackend.Generate(ff_id, fs_id.String())
 		if err != nil {
-			return http.StatusInternalServerError, []byte("")
+			//return http.StatusInternalServerError, []byte("")
+			return http.StatusInternalServerError, "Internal Server Error Occured. Please try again later."
 		} else {
 			//Storing user details from the user agent
-			userAgent := r.Header.Get("User-Agent")
+			//userAgent := r.Header.Get("User-Agent")
 			ua := user_agent.New(userAgent)
 			browserName, browserVersion := ua.Browser()
 			engineName, engineVersion := ua.Engine()
@@ -44,7 +45,8 @@ func Login(requestUser *models.User, r *http.Request) (int, []byte) {
 				timeNow,
 				expTime,
 				requestUser.Ip_details,
-				r.Referer(),
+				//r.Referer(),
+				"",
 				ua.Bot(),
 				ua.Mobile(),
 				browserName,
@@ -65,22 +67,26 @@ func Login(requestUser *models.User, r *http.Request) (int, []byte) {
 			insertResult, err := sessionCollection.InsertOne(context.TODO(), userDetails)
 			if err != nil {
 				log.Println(err)
-				response, _ := json.Marshal(models.ErrorMessage{"Error Occured. Please contact administrator."})
+				//response, _ := json.Marshal(models.ErrorMessage{"Internal Server Error Occured. Please try again later."})
+				response :="Internal Server Error Occured. Please try again later."
 				return http.StatusInternalServerError, response
 			}
 			log.Println("New session created for user "+ff_id+" with id : ", insertResult.InsertedID)
 
-			response, _ := json.Marshal(models.TokenAuthentication{token})
-			return http.StatusOK, response
+			//response, _ := json.Marshal(models.TokenAuthentication{token})
+			return http.StatusOK, token
 		}
 	} else if !valid && err == 1 {
-		response, _ := json.Marshal(models.ErrorMessage{"User not found"})
+		//response, _ := json.Marshal(models.ErrorMessage{"User not found"})
+		response := "User not found"
 		return http.StatusUnauthorized, response
 	} else if !valid && err == 2 {
-		response, _ := json.Marshal(models.ErrorMessage{"Invalid password"})
+		//response, _ := json.Marshal(models.ErrorMessage{"Invalid password"})
+		response := "Invalid password"
 		return http.StatusUnauthorized, response
 	} else {
-		response, _ := json.Marshal(models.ErrorMessage{"Error Occured. Please contact administrator."})
+		//response, _ := json.Marshal(models.ErrorMessage{"Error Occured. Please contact administrator."})
+		response := "Error Occured. Please contact administrator."
 		return http.StatusInternalServerError, response
 	}
 }

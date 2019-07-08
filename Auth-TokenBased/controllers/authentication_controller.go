@@ -30,11 +30,20 @@ _:
 		err := json.NewEncoder(w).Encode(res)
 		models.CheckError(err, w)
 	} else {
-		responseStatus, token := core.Login(requestUser, r)
+		responseStatus, response := core.Login(requestUser, r.Header.Get("User-Agent")) //return token if success
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(responseStatus)
-		_, err := w.Write(token)
-		models.CheckError(err, w)
+
+		if(responseStatus == http.StatusOK) {
+			res := &models.TokenAuthentication{response}
+			err := json.NewEncoder(w).Encode(res)
+			models.CheckError(err, w)
+		} else {
+			res := &models.ErrorMessage{response}
+			err := json.NewEncoder(w).Encode(res)
+			models.CheckError(err, w)
+		}
+
 	}
 }
 

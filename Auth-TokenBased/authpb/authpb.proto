@@ -1,16 +1,77 @@
 syntax = "proto3";
 
-package authpb;
+package auth;
+option go_package="authpb";
+
+message Token {
+    string token = 1;
+}
+
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    bool success  = 1;
+    string message = 2;
+    Token token = 3;
+}
 
 message CheckUsernameRequest {
     string username = 1;
 }
 
 message CheckUsernameResponse {
-    string username = 1;
-    string avatar = 2;
+    bool success  = 1;
+    string message = 2;
+    string username = 3;
+    string avatar = 4;
 }
 
+message CheckUsernameAvailabilityRequest {
+    string username = 1;
+}
+
+message CheckUsernameAvailabilityResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message CheckEmailAvailabilityRequest {
+    string email = 1;
+}
+
+message CheckEmailAvailabilityResponse {
+    bool success  = 1;
+    string message = 2;
+}
+
+message SignupRequest {
+    string email = 1;
+    string username = 2;
+    string firstname = 3;
+    string lastname = 4;
+    string password = 5;
+}
+
+message SignupError {
+    string name = 1;
+    string err = 2;
+}
+
+message SignupResponse {
+    bool success  = 1;
+    string message = 2;
+    repeated SignupError err = 3;
+}
+
+
 service AuthService {
-    rpc CheckUsername (CheckUsernameRequest) returns (CheckUsernameResponse);
+    //Unary
+    rpc Login(LoginRequest) returns (LoginResponse) {};
+    rpc CheckUsername(CheckUsernameRequest) returns (CheckUsernameResponse) {};
+    rpc CheckUsernameAvailability(CheckUsernameAvailabilityRequest) returns (CheckUsernameAvailabilityResponse) {};
+    rpc CheckEmailAvailability(CheckEmailAvailabilityRequest) returns (CheckEmailAvailabilityResponse) {};
+    rpc Signup(SignupRequest) returns (SignupResponse) {};
 }

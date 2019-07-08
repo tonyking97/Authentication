@@ -2,6 +2,7 @@ package main
 
 import (
 	"./core"
+	"./grpc"
 	"./routers"
 	"github.com/mileusna/crontab"
 	"github.com/rs/cors"
@@ -45,6 +46,14 @@ func main() {
 			"*", //or we can have our header key values which we are using in our application
 		},
 	})
+
+	//Starting gRPC server
+	go func() {
+		err := grpc.StartServer()
+		if err != nil {
+			log.Fatalf("Failed to start gRPC server: %s", err)
+		}
+	}()
 
 	//Starting the Authentication Server
 	handler := c.Handler(router)
