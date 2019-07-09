@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth;
+package authpb;
 option go_package="authpb";
 
 message Token {

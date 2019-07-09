@@ -2,19 +2,19 @@ syntax = "proto3";
 
 package authpb;
 
-import "google/api/annotations.proto";
+//import "google/api/annotations.proto";
 
 service AuthService {
 
     rpc CheckServerStatus(CheckServerStatusRequest) returns (CheckServerStatusResponse){
-        option (google.api.http).get = "/api/v1/checkserverstatus";
+//        option (google.api.http).get = "/api/v1/checkserverstatus";
     }
 
     rpc CheckUsername (CheckUsernameRequest) returns (CheckUsernameResponse){
-        option (google.api.http) = {
-            post : "/api/v1/checkusername"
-            body : "*"
-        };
+//        option (google.api.http) = {
+//            post : "/api/v1/checkusername"
+//            body : "*"
+//        };
     }
     rpc SendBuildFileToClient(UploadRequest) returns (stream Chunk) {}
 
