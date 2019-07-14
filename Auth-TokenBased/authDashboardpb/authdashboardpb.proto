@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package authdashboardpb;
+option go_package = "authdashboardpb";
+
+message CheckTokenRequest {
+}
+
+message CheckTokenResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+service AuthDashboardService {
+    rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse) {};
+}

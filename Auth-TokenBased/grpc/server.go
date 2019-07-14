@@ -1,7 +1,9 @@
 package grpc
 
 import (
+	"../authDashboardpb"
 	"../authpb"
+	"../grpcMiddleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 	"log"
@@ -14,8 +16,15 @@ func StartServer() error {
 		log.Fatalln("Failed to listen",err)
 	}
 
-	s:=grpc.NewServer()
+	var options []grpc.ServerOption
+
+	//Interceptor
+	options = append(options, grpc.UnaryInterceptor(grpcMiddleware.AuthDashboardUnaryInterceptor))
+
+	s:=grpc.NewServer( options... )
+
 	authpb.RegisterAuthServiceServer(s, &server{})
+	authdashboardpb.RegisterAuthDashboardServiceServer(s,&serverdashboard{})
 
 	reflection.Register(s)
 

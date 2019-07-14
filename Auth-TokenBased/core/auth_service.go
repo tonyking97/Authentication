@@ -32,8 +32,6 @@ func Login(requestUser *models.User,userAgent string) (int, string) {
 			//return http.StatusInternalServerError, []byte("")
 			return http.StatusInternalServerError, "Internal Server Error Occured. Please try again later."
 		} else {
-			//Storing user details from the user agent
-			//userAgent := r.Header.Get("User-Agent")
 			ua := user_agent.New(userAgent)
 			browserName, browserVersion := ua.Browser()
 			engineName, engineVersion := ua.Engine()
@@ -273,7 +271,7 @@ func Signup(requestUser *models.SignUpDetails) bool {
 func RefreshToken(requestUser *models.TokenAuthentication) []byte {
 	authBackend := InitJWTAuthenticationBackend()
 
-	ff_id, fs_id, err := CheckToken(requestUser)
+	ff_id, fs_id, err := CheckToken(requestUser.Token)
 
 	if err != nil {
 		response, _ := json.Marshal(models.ErrorMessage{err.Error()})
@@ -320,10 +318,10 @@ func RefreshToken(requestUser *models.TokenAuthentication) []byte {
 	return response
 }
 
-func CheckToken(requestUser *models.TokenAuthentication) (string, string, error) {
+func CheckToken(token string) (string, string, error) {
 	authBackend := InitJWTAuthenticationBackend()
 
-	ff_id, fs_id, err := authBackend.ExtractToken(requestUser.Token)
+	ff_id, fs_id, err := authBackend.ExtractToken(token)
 
 	if err != nil {
 		log.Println("------>>>>>", err)
@@ -332,7 +330,7 @@ func CheckToken(requestUser *models.TokenAuthentication) (string, string, error)
 
 	sessionCollection := SessionCollectionInit()
 
-	filter := bson.D{{"ff_id", ff_id}, {"fs_id", fs_id}, {"token", requestUser.Token}}
+	filter := bson.D{{"ff_id", ff_id}, {"fs_id", fs_id}, {"token", token}}
 
 	var result models.SessionDetails
 	err = sessionCollection.FindOne(context.TODO(), filter).Decode(&result)
@@ -350,7 +348,7 @@ func CheckToken(requestUser *models.TokenAuthentication) (string, string, error)
 
 func Logout(requestUser *models.TokenAuthentication) error {
 
-	ff_id, fs_id, err := CheckToken(requestUser)
+	ff_id, fs_id, err := CheckToken(requestUser.Token)
 	sessionCollection := SessionCollectionInit()
 
 	if err != nil {

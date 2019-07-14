@@ -6,6 +6,8 @@ import (
 	"../models"
 	"../validation/govalidator"
 	"context"
+	"encoding/json"
+	"google.golang.org/grpc/metadata"
 	"log"
 	"net/http"
 )
@@ -16,10 +18,18 @@ type server struct {}
 func (*server) Login(ctx context.Context,req *authpb.LoginRequest) (*authpb.LoginResponse, error) {
 	log.Println("gRPC login request")
 
+	md, _ := metadata.FromIncomingContext(ctx)
+
+	ipDetails := &models.IpDetails{}
+	_= json.Unmarshal([]byte(req.Ipdetails), ipDetails)
+
 	requestUser := &models.User{
 		Username:req.Username,
 		Password:req.Password,
+		Localization:req.Localization,
+		Ip_details:*ipDetails,
 	}
+
 
 	if _, err := govalidator.ValidateStruct(requestUser); err != nil {
 		res := &authpb.LoginResponse{
@@ -31,7 +41,7 @@ func (*server) Login(ctx context.Context,req *authpb.LoginRequest) (*authpb.Logi
 		}
 		return res,nil
 	} else {
-		responseStatus, response := core.Login(requestUser, "") //need to pass useragent
+		responseStatus, response := core.Login(requestUser, md["user-agent"][0]) //need to pass useragent
 		if responseStatus == http.StatusOK {
 			res := &authpb.LoginResponse{
 				Success:true,
@@ -169,7 +179,6 @@ func (*server) Signup(ctx context.Context,req *authpb.SignupRequest) (*authpb.Si
 		var errArr[] *authpb.SignupError
 
 		for _, element := range err {
-			log.Println(element.Err)
 			errElem := &authpb.SignupError{
 				Name:element.Name,
 				Err:element.Err,

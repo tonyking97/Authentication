@@ -435,7 +435,9 @@ proto.authpb.LoginRequest.prototype.toObject = function(opt_includeInstance) {
 proto.authpb.LoginRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     username: (f = jspb.Message.getFieldWithDefault(msg, 1, "")) == null ? undefined : f,
-    password: (f = jspb.Message.getFieldWithDefault(msg, 2, "")) == null ? undefined : f
+    password: (f = jspb.Message.getFieldWithDefault(msg, 2, "")) == null ? undefined : f,
+    localization: (f = jspb.Message.getFieldWithDefault(msg, 3, "")) == null ? undefined : f,
+    ipdetails: (f = jspb.Message.getFieldWithDefault(msg, 4, "")) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -480,6 +482,14 @@ proto.authpb.LoginRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setPassword(value);
       break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLocalization(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIpdetails(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -523,6 +533,20 @@ proto.authpb.LoginRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getLocalization();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
+  f = message.getIpdetails();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
 };
 
 
@@ -553,6 +577,36 @@ proto.authpb.LoginRequest.prototype.getPassword = function() {
 /** @param {string} value */
 proto.authpb.LoginRequest.prototype.setPassword = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string localization = 3;
+ * @return {string}
+ */
+proto.authpb.LoginRequest.prototype.getLocalization = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.authpb.LoginRequest.prototype.setLocalization = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string ipdetails = 4;
+ * @return {string}
+ */
+proto.authpb.LoginRequest.prototype.getIpdetails = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.authpb.LoginRequest.prototype.setIpdetails = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

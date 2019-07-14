@@ -10,6 +10,8 @@ message Token {
 message LoginRequest {
     string username = 1;
     string password = 2;
+    string localization = 3;
+    string ipdetails = 4;
 }
 
 message LoginResponse {

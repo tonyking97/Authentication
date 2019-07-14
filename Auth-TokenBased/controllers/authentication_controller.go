@@ -19,8 +19,7 @@ import (
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	requestUser := new(models.User)
 	decoder := json.NewDecoder(r.Body)
-_:
-	decoder.Decode(&requestUser)
+	_:decoder.Decode(&requestUser)
 
 	//Validating params. Refer models/users.go
 	if _, err := govalidator.ValidateStruct(requestUser); err != nil {
@@ -85,7 +84,7 @@ func GetNameDetails(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	ff_id, _, err := core.CheckToken(requestUser)
+	ff_id, _, err := core.CheckToken(requestUser.Token)
 
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
@@ -193,7 +192,7 @@ func GetSessionDetails(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	ff_id, _, err := core.CheckToken(requestUser)
+	ff_id, _, err := core.CheckToken(requestUser.Token)
 
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
@@ -219,7 +218,7 @@ func GetCurrentSessionDetails(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	ff_id, fs_id, err := core.CheckToken(requestUser)
+	ff_id, fs_id, err := core.CheckToken(requestUser.Token)
 
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
@@ -310,7 +309,7 @@ func CheckTokenHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	_, _, err = core.CheckToken(requestUser)
+	_, _, err = core.CheckToken(requestUser.Token)
 
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")

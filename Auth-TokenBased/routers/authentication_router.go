@@ -40,11 +40,11 @@ func SetAuthenticationRouter(router *mux.Router) {
 	router.Handle("/checkUsernameAvailability", commonHandler.ThenFunc(controllers.CheckUsernameAvailability)).Methods("POST")
 	//Check Email is Availability on signup
 	router.Handle("/checkEmailAvailability", commonHandler.ThenFunc(controllers.CheckEmailAvailability)).Methods("POST")
-	//GetActiveSessionListDetails
+	//GetActiveSessionListDetails *
 	router.Handle("/getActiveSessionDetails", commonHandler.ThenFunc(controllers.GetActiveSessionDetails)).Methods("GET")
 	//GetSessionListDetails
 	router.Handle("/getSessionDetails", commonHandler.ThenFunc(controllers.GetSessionDetails)).Methods("POST")
-	//GetInActiveSessionListDetails
+	//GetInActiveSessionListDetails *
 	router.Handle("/getInActiveSessionDetails", commonHandler.ThenFunc(controllers.GetInActiveSessionDetails)).Methods("GET")
 	//GetCurrentSessionDetails
 	router.Handle("/getCurrentSessionDetails", commonHandler.ThenFunc(controllers.GetCurrentSessionDetails)).Methods("POST")

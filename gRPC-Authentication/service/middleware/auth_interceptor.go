@@ -12,7 +12,7 @@ import (
 )
 
 // Interceptor for auth check
-func AuthUnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+	func AuthUnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
 	meta, _ := metadata.FromIncomingContext(ctx)
 	log.Printf("MetaData : %v", meta)
 	log.Println(info.FullMethod)
