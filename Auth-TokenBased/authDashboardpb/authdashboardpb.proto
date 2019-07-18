@@ -11,6 +11,62 @@ message CheckTokenResponse {
     string message = 2;
 }
 
+message UserDetailsRequest {
+}
+
+message UserDetailsResponse {
+    bool success = 1;
+    string username = 2;
+    string firstname = 3;
+    string lastname = 4;
+    string email = 5;
+}
+
+message CurrentSessionDetailsRequest {
+}
+
+message CurrentSessionDetailsResponse {
+    int64 activesessions = 1;
+    int64 activetokens = 2;
+    string ip = 3;
+    string city = 4;
+    float latitude = 5;
+    float longitude = 6;
+}
+
+message SessionDetailsRequest {
+}
+
+message SessionDetailLimited {
+    string token = 1;
+    string status = 2;
+    int64 loggedTime = 3;
+    string loggedTimeUTC = 4;
+    int64 expiryTime = 5;
+    string expiryTimeUTC = 6;
+    bool Mobile = 7;
+    string browserName = 8;
+    string browserVersion = 9;
+    string osName = 10;
+    string osPlatform = 11;
+}
+
+message SessionDetailsResponse {
+    repeated SessionDetailLimited sessionDetails = 1;
+}
+
+message LogoutRequest {
+}
+
+message LogoutResponse {
+    bool success = 1;
+    string message = 2;
+}
+
 service AuthDashboardService {
     rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse) {};
+    rpc UserDetails(UserDetailsRequest) returns (UserDetailsResponse) {};
+    rpc CurrentSessionDetails(CurrentSessionDetailsRequest) returns (CurrentSessionDetailsResponse) {};
+    rpc SessionDetails(SessionDetailsRequest) returns (SessionDetailsResponse) {};
+    rpc Logout(LogoutRequest) returns (LogoutResponse) {};
 }

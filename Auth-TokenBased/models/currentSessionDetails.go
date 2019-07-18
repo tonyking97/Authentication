@@ -40,8 +40,8 @@ type currentIpDetails struct {
 	//RegionName string `json:"region_name" bson:"region_name"`
 	City string `json:"city" bson:"city"`
 	//Zip string `json:"zip" bson:"zip"`
-	Latitude  float64 `json:"latitude" bson:"latitude"`
-	Longitude float64 `json:"longitude" bson:"longitude"`
+	Latitude  float32 `json:"latitude" bson:"latitude"`
+	Longitude float32 `json:"longitude" bson:"longitude"`
 	//Location currentLocation `json:"location" bson:"location"`
 }
 

@@ -103,7 +103,7 @@ func CheckUsername(requestUser *models.Username) (bool, string, string) {
 }
 
 //Returns true and avatar name(First letters of firstname and lastname) while username exist
-func GetNameDetails(requestUser *models.Ff_id_user) (bool, models.UserNameDetails) {
+func GetUserDetails(requestUser *models.Ff_id_user) (bool, models.UserNameDetails) {
 	var result models.UserNameDetails
 
 	usersCollection := UsersCollectionInit()
@@ -182,13 +182,13 @@ func GetInActiveSessionList(requestUser *models.Ff_id) []models.SessionDetails {
 	return results
 }
 
-func GetSessionList(requestUser *models.Ff_id) []models.SessionDetails_limited {
+func GetSessionList(ff_id string) []models.SessionDetails_limited {
 	var results []models.SessionDetails_limited
 	sessionCollection := SessionCollectionInit()
 
 	option := options.Find()
 	option.SetSort(bson.D{{"logged_Time", -1}})
-	filter := bson.D{{"ff_id", requestUser.Ff_id}}
+	filter := bson.D{{"ff_id", ff_id}}
 	cur, err := sessionCollection.Find(context.TODO(), filter, option)
 	if err != nil {
 		log.Println(err)
@@ -214,10 +214,10 @@ func GetSessionList(requestUser *models.Ff_id) []models.SessionDetails_limited {
 	return results
 }
 
-func GetCurrentSessionList(requestUser *models.Fs_id) models.CurrentSessionDetails {
+func GetCurrentSessionList(Fs_id string) models.CurrentSessionDetails {
 	var result models.CurrentSessionDetails
 	sessionCollection := SessionCollectionInit()
-	filter := bson.D{{"fs_id", requestUser.Fs_id}, {"status", "active"}}
+	filter := bson.D{{"fs_id", Fs_id}, {"status", "active"}}
 	err := sessionCollection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {
 		log.Println(err)
@@ -225,9 +225,9 @@ func GetCurrentSessionList(requestUser *models.Fs_id) models.CurrentSessionDetai
 	return result
 }
 
-func GetActiveSessionsCount(requestUser *models.Ff_id) int64 {
+func GetActiveSessionsCount(Ff_id string) int64 {
 	sessionCollection := SessionCollectionInit()
-	filter := bson.D{{"ff_id", requestUser.Ff_id}, {"status", "active"}}
+	filter := bson.D{{"ff_id", Ff_id}, {"status", "active"}}
 	count, err := sessionCollection.CountDocuments(context.TODO(), filter)
 
 	if err != nil {
@@ -237,9 +237,9 @@ func GetActiveSessionsCount(requestUser *models.Ff_id) int64 {
 	return count
 }
 
-func GetActiveTokensCount(requestUser *models.Ff_id) int64 {
+func GetActiveTokensCount(Ff_id string) int64 {
 	sessionCollection := SessionCollectionInit()
-	filter := bson.D{{"ff_id", requestUser.Ff_id}, {"status", "active"}}
+	filter := bson.D{{"ff_id", Ff_id}, {"status", "active"}}
 	count, err := sessionCollection.CountDocuments(context.TODO(), filter)
 
 	if err != nil {
@@ -346,14 +346,9 @@ func CheckToken(token string) (string, string, error) {
 	return "", "", errors.New("invalid token")
 }
 
-func Logout(requestUser *models.TokenAuthentication) error {
+func Logout(ff_id, fs_id string) error {
 
-	ff_id, fs_id, err := CheckToken(requestUser.Token)
 	sessionCollection := SessionCollectionInit()
-
-	if err != nil {
-		return err
-	}
 
 	filter := bson.D{{"ff_id", ff_id}, {"fs_id", fs_id}}
 	update := bson.D{

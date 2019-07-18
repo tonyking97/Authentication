@@ -94,10 +94,10 @@ func GetNameDetails(w http.ResponseWriter, r *http.Request) {
 		models.CheckError(error, w)
 	} else {
 
-		if ack, result := core.GetNameDetails(&models.Ff_id_user{Ff_id: ff_id}); !ack {
+		if ack, result := core.GetUserDetails(&models.Ff_id_user{Ff_id: ff_id}); !ack {
 			w.Header().Set("Content-Type", "application/json")
 			w.WriteHeader(http.StatusUnauthorized)
-			res := &models.ErrorMessage{"No such Username exist"}
+			res := &models.ErrorMessage{"No such User exist"}
 			err := json.NewEncoder(w).Encode(res)
 			models.CheckError(err, w)
 		} else {
@@ -201,7 +201,7 @@ func GetSessionDetails(w http.ResponseWriter, r *http.Request) {
 		error := json.NewEncoder(w).Encode(res)
 		models.CheckError(error, w)
 	} else {
-		results := core.GetSessionList(&models.Ff_id{Ff_id: ff_id})
+		results := core.GetSessionList(ff_id)
 
 		w.Header().Set("Content-Type", "application/json")
 		err := json.NewEncoder(w).Encode(results)
@@ -227,9 +227,9 @@ func GetCurrentSessionDetails(w http.ResponseWriter, r *http.Request) {
 		error := json.NewEncoder(w).Encode(res)
 		models.CheckError(error, w)
 	} else {
-		result := core.GetCurrentSessionList(&models.Fs_id{Fs_id: fs_id})
-		tokenCount := core.GetActiveTokensCount(&models.Ff_id{Ff_id: ff_id})
-		sessionCount := core.GetActiveTokensCount(&models.Ff_id{Ff_id: ff_id})
+		result := core.GetCurrentSessionList(fs_id)
+		tokenCount := core.GetActiveTokensCount(ff_id)
+		sessionCount := core.GetActiveSessionsCount(ff_id)
 
 		results := &models.CurrentSessionDetail_limited{
 			Active_Sessions: sessionCount,
@@ -334,7 +334,7 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	err = core.Logout(requestUser)
+	ff_id, fs_id, err := core.CheckToken(requestUser.Token)
 
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json")
@@ -343,9 +343,20 @@ func LogoutHandler(w http.ResponseWriter, r *http.Request) {
 		err := json.NewEncoder(w).Encode(res)
 		models.CheckError(err, w)
 	} else {
-		w.Header().Set("Content-Type", "application/json")
-		res := &models.SuccessMessage{"Logged out successfully"}
-		err := json.NewEncoder(w).Encode(res)
-		models.CheckError(err, w)
+
+		err = core.Logout(ff_id,fs_id)
+
+		if err != nil {
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusBadRequest)
+			res := &models.ErrorMessage{err.Error()}
+			err := json.NewEncoder(w).Encode(res)
+			models.CheckError(err, w)
+		} else {
+			w.Header().Set("Content-Type", "application/json")
+			res := &models.SuccessMessage{"Logged out successfully"}
+			err := json.NewEncoder(w).Encode(res)
+			models.CheckError(err, w)
+		}
 	}
 }

@@ -27,7 +27,9 @@ func AuthDashboardUnaryInterceptor(ctx context.Context, req interface{}, info *g
 			return nil, status.Errorf(codes.InvalidArgument, "token not found")
 		}
 
-		_, _, err := core.CheckToken(token[0])
+		ff_id, fs_id, err := core.CheckToken(token[0])
+		ctx = context.WithValue(ctx, "ff_id",ff_id)
+		ctx = context.WithValue(ctx, "fs_id",fs_id)
 		if err != nil {
 			return nil, err
 		}

@@ -35,7 +35,7 @@ func SetAuthenticationRouter(router *mux.Router) {
 	//Check Username is Available
 	router.Handle("/checkUsername", commonHandler.ThenFunc(controllers.CheckUsername)).Methods("POST")
 	//Get Username
-	router.Handle("/getNameDetails", commonHandler.ThenFunc(controllers.GetNameDetails)).Methods("POST")
+	router.Handle("/getUserDetails", commonHandler.ThenFunc(controllers.GetNameDetails)).Methods("POST")
 	//Check Username is Availability on signup
 	router.Handle("/checkUsernameAvailability", commonHandler.ThenFunc(controllers.CheckUsernameAvailability)).Methods("POST")
 	//Check Email is Availability on signup

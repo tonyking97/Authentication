@@ -102,26 +102,542 @@ func (m *CheckTokenResponse) GetMessage() string {
 	return ""
 }
 
+type UserDetailsRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UserDetailsRequest) Reset()         { *m = UserDetailsRequest{} }
+func (m *UserDetailsRequest) String() string { return proto.CompactTextString(m) }
+func (*UserDetailsRequest) ProtoMessage()    {}
+func (*UserDetailsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{2}
+}
+
+func (m *UserDetailsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDetailsRequest.Unmarshal(m, b)
+}
+func (m *UserDetailsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDetailsRequest.Marshal(b, m, deterministic)
+}
+func (m *UserDetailsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDetailsRequest.Merge(m, src)
+}
+func (m *UserDetailsRequest) XXX_Size() int {
+	return xxx_messageInfo_UserDetailsRequest.Size(m)
+}
+func (m *UserDetailsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDetailsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDetailsRequest proto.InternalMessageInfo
+
+type UserDetailsResponse struct {
+	Success              bool     `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Username             string   `protobuf:"bytes,2,opt,name=username,proto3" json:"username,omitempty"`
+	Firstname            string   `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
+	Lastname             string   `protobuf:"bytes,4,opt,name=lastname,proto3" json:"lastname,omitempty"`
+	Email                string   `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UserDetailsResponse) Reset()         { *m = UserDetailsResponse{} }
+func (m *UserDetailsResponse) String() string { return proto.CompactTextString(m) }
+func (*UserDetailsResponse) ProtoMessage()    {}
+func (*UserDetailsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{3}
+}
+
+func (m *UserDetailsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDetailsResponse.Unmarshal(m, b)
+}
+func (m *UserDetailsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDetailsResponse.Marshal(b, m, deterministic)
+}
+func (m *UserDetailsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDetailsResponse.Merge(m, src)
+}
+func (m *UserDetailsResponse) XXX_Size() int {
+	return xxx_messageInfo_UserDetailsResponse.Size(m)
+}
+func (m *UserDetailsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDetailsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDetailsResponse proto.InternalMessageInfo
+
+func (m *UserDetailsResponse) GetSuccess() bool {
+	if m != nil {
+		return m.Success
+	}
+	return false
+}
+
+func (m *UserDetailsResponse) GetUsername() string {
+	if m != nil {
+		return m.Username
+	}
+	return ""
+}
+
+func (m *UserDetailsResponse) GetFirstname() string {
+	if m != nil {
+		return m.Firstname
+	}
+	return ""
+}
+
+func (m *UserDetailsResponse) GetLastname() string {
+	if m != nil {
+		return m.Lastname
+	}
+	return ""
+}
+
+func (m *UserDetailsResponse) GetEmail() string {
+	if m != nil {
+		return m.Email
+	}
+	return ""
+}
+
+type CurrentSessionDetailsRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CurrentSessionDetailsRequest) Reset()         { *m = CurrentSessionDetailsRequest{} }
+func (m *CurrentSessionDetailsRequest) String() string { return proto.CompactTextString(m) }
+func (*CurrentSessionDetailsRequest) ProtoMessage()    {}
+func (*CurrentSessionDetailsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{4}
+}
+
+func (m *CurrentSessionDetailsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CurrentSessionDetailsRequest.Unmarshal(m, b)
+}
+func (m *CurrentSessionDetailsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CurrentSessionDetailsRequest.Marshal(b, m, deterministic)
+}
+func (m *CurrentSessionDetailsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CurrentSessionDetailsRequest.Merge(m, src)
+}
+func (m *CurrentSessionDetailsRequest) XXX_Size() int {
+	return xxx_messageInfo_CurrentSessionDetailsRequest.Size(m)
+}
+func (m *CurrentSessionDetailsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CurrentSessionDetailsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CurrentSessionDetailsRequest proto.InternalMessageInfo
+
+type CurrentSessionDetailsResponse struct {
+	Activesessions       int64    `protobuf:"varint,1,opt,name=activesessions,proto3" json:"activesessions,omitempty"`
+	Activetokens         int64    `protobuf:"varint,2,opt,name=activetokens,proto3" json:"activetokens,omitempty"`
+	Ip                   string   `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
+	City                 string   `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	Latitude             float32  `protobuf:"fixed32,5,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude            float32  `protobuf:"fixed32,6,opt,name=longitude,proto3" json:"longitude,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CurrentSessionDetailsResponse) Reset()         { *m = CurrentSessionDetailsResponse{} }
+func (m *CurrentSessionDetailsResponse) String() string { return proto.CompactTextString(m) }
+func (*CurrentSessionDetailsResponse) ProtoMessage()    {}
+func (*CurrentSessionDetailsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{5}
+}
+
+func (m *CurrentSessionDetailsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CurrentSessionDetailsResponse.Unmarshal(m, b)
+}
+func (m *CurrentSessionDetailsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CurrentSessionDetailsResponse.Marshal(b, m, deterministic)
+}
+func (m *CurrentSessionDetailsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CurrentSessionDetailsResponse.Merge(m, src)
+}
+func (m *CurrentSessionDetailsResponse) XXX_Size() int {
+	return xxx_messageInfo_CurrentSessionDetailsResponse.Size(m)
+}
+func (m *CurrentSessionDetailsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CurrentSessionDetailsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CurrentSessionDetailsResponse proto.InternalMessageInfo
+
+func (m *CurrentSessionDetailsResponse) GetActivesessions() int64 {
+	if m != nil {
+		return m.Activesessions
+	}
+	return 0
+}
+
+func (m *CurrentSessionDetailsResponse) GetActivetokens() int64 {
+	if m != nil {
+		return m.Activetokens
+	}
+	return 0
+}
+
+func (m *CurrentSessionDetailsResponse) GetIp() string {
+	if m != nil {
+		return m.Ip
+	}
+	return ""
+}
+
+func (m *CurrentSessionDetailsResponse) GetCity() string {
+	if m != nil {
+		return m.City
+	}
+	return ""
+}
+
+func (m *CurrentSessionDetailsResponse) GetLatitude() float32 {
+	if m != nil {
+		return m.Latitude
+	}
+	return 0
+}
+
+func (m *CurrentSessionDetailsResponse) GetLongitude() float32 {
+	if m != nil {
+		return m.Longitude
+	}
+	return 0
+}
+
+type SessionDetailsRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SessionDetailsRequest) Reset()         { *m = SessionDetailsRequest{} }
+func (m *SessionDetailsRequest) String() string { return proto.CompactTextString(m) }
+func (*SessionDetailsRequest) ProtoMessage()    {}
+func (*SessionDetailsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{6}
+}
+
+func (m *SessionDetailsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SessionDetailsRequest.Unmarshal(m, b)
+}
+func (m *SessionDetailsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SessionDetailsRequest.Marshal(b, m, deterministic)
+}
+func (m *SessionDetailsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SessionDetailsRequest.Merge(m, src)
+}
+func (m *SessionDetailsRequest) XXX_Size() int {
+	return xxx_messageInfo_SessionDetailsRequest.Size(m)
+}
+func (m *SessionDetailsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SessionDetailsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SessionDetailsRequest proto.InternalMessageInfo
+
+type SessionDetailLimited struct {
+	Token                string   `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Status               string   `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	LoggedTime           int64    `protobuf:"varint,3,opt,name=loggedTime,proto3" json:"loggedTime,omitempty"`
+	LoggedTimeUTC        string   `protobuf:"bytes,4,opt,name=loggedTimeUTC,proto3" json:"loggedTimeUTC,omitempty"`
+	ExpiryTime           int64    `protobuf:"varint,5,opt,name=expiryTime,proto3" json:"expiryTime,omitempty"`
+	ExpiryTimeUTC        string   `protobuf:"bytes,6,opt,name=expiryTimeUTC,proto3" json:"expiryTimeUTC,omitempty"`
+	Mobile               bool     `protobuf:"varint,7,opt,name=Mobile,proto3" json:"Mobile,omitempty"`
+	BrowserName          string   `protobuf:"bytes,8,opt,name=browserName,proto3" json:"browserName,omitempty"`
+	BrowserVersion       string   `protobuf:"bytes,9,opt,name=browserVersion,proto3" json:"browserVersion,omitempty"`
+	OsName               string   `protobuf:"bytes,10,opt,name=osName,proto3" json:"osName,omitempty"`
+	OsPlatform           string   `protobuf:"bytes,11,opt,name=osPlatform,proto3" json:"osPlatform,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SessionDetailLimited) Reset()         { *m = SessionDetailLimited{} }
+func (m *SessionDetailLimited) String() string { return proto.CompactTextString(m) }
+func (*SessionDetailLimited) ProtoMessage()    {}
+func (*SessionDetailLimited) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{7}
+}
+
+func (m *SessionDetailLimited) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SessionDetailLimited.Unmarshal(m, b)
+}
+func (m *SessionDetailLimited) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SessionDetailLimited.Marshal(b, m, deterministic)
+}
+func (m *SessionDetailLimited) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SessionDetailLimited.Merge(m, src)
+}
+func (m *SessionDetailLimited) XXX_Size() int {
+	return xxx_messageInfo_SessionDetailLimited.Size(m)
+}
+func (m *SessionDetailLimited) XXX_DiscardUnknown() {
+	xxx_messageInfo_SessionDetailLimited.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SessionDetailLimited proto.InternalMessageInfo
+
+func (m *SessionDetailLimited) GetToken() string {
+	if m != nil {
+		return m.Token
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetStatus() string {
+	if m != nil {
+		return m.Status
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetLoggedTime() int64 {
+	if m != nil {
+		return m.LoggedTime
+	}
+	return 0
+}
+
+func (m *SessionDetailLimited) GetLoggedTimeUTC() string {
+	if m != nil {
+		return m.LoggedTimeUTC
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetExpiryTime() int64 {
+	if m != nil {
+		return m.ExpiryTime
+	}
+	return 0
+}
+
+func (m *SessionDetailLimited) GetExpiryTimeUTC() string {
+	if m != nil {
+		return m.ExpiryTimeUTC
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetMobile() bool {
+	if m != nil {
+		return m.Mobile
+	}
+	return false
+}
+
+func (m *SessionDetailLimited) GetBrowserName() string {
+	if m != nil {
+		return m.BrowserName
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetBrowserVersion() string {
+	if m != nil {
+		return m.BrowserVersion
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetOsName() string {
+	if m != nil {
+		return m.OsName
+	}
+	return ""
+}
+
+func (m *SessionDetailLimited) GetOsPlatform() string {
+	if m != nil {
+		return m.OsPlatform
+	}
+	return ""
+}
+
+type SessionDetailsResponse struct {
+	SessionDetails       []*SessionDetailLimited `protobuf:"bytes,1,rep,name=sessionDetails,proto3" json:"sessionDetails,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                `json:"-"`
+	XXX_unrecognized     []byte                  `json:"-"`
+	XXX_sizecache        int32                   `json:"-"`
+}
+
+func (m *SessionDetailsResponse) Reset()         { *m = SessionDetailsResponse{} }
+func (m *SessionDetailsResponse) String() string { return proto.CompactTextString(m) }
+func (*SessionDetailsResponse) ProtoMessage()    {}
+func (*SessionDetailsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{8}
+}
+
+func (m *SessionDetailsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SessionDetailsResponse.Unmarshal(m, b)
+}
+func (m *SessionDetailsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SessionDetailsResponse.Marshal(b, m, deterministic)
+}
+func (m *SessionDetailsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SessionDetailsResponse.Merge(m, src)
+}
+func (m *SessionDetailsResponse) XXX_Size() int {
+	return xxx_messageInfo_SessionDetailsResponse.Size(m)
+}
+func (m *SessionDetailsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SessionDetailsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SessionDetailsResponse proto.InternalMessageInfo
+
+func (m *SessionDetailsResponse) GetSessionDetails() []*SessionDetailLimited {
+	if m != nil {
+		return m.SessionDetails
+	}
+	return nil
+}
+
+type LogoutRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LogoutRequest) Reset()         { *m = LogoutRequest{} }
+func (m *LogoutRequest) String() string { return proto.CompactTextString(m) }
+func (*LogoutRequest) ProtoMessage()    {}
+func (*LogoutRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{9}
+}
+
+func (m *LogoutRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LogoutRequest.Unmarshal(m, b)
+}
+func (m *LogoutRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LogoutRequest.Marshal(b, m, deterministic)
+}
+func (m *LogoutRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LogoutRequest.Merge(m, src)
+}
+func (m *LogoutRequest) XXX_Size() int {
+	return xxx_messageInfo_LogoutRequest.Size(m)
+}
+func (m *LogoutRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_LogoutRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LogoutRequest proto.InternalMessageInfo
+
+type LogoutResponse struct {
+	Success              bool     `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message              string   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *LogoutResponse) Reset()         { *m = LogoutResponse{} }
+func (m *LogoutResponse) String() string { return proto.CompactTextString(m) }
+func (*LogoutResponse) ProtoMessage()    {}
+func (*LogoutResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d2738454257fa90a, []int{10}
+}
+
+func (m *LogoutResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_LogoutResponse.Unmarshal(m, b)
+}
+func (m *LogoutResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_LogoutResponse.Marshal(b, m, deterministic)
+}
+func (m *LogoutResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LogoutResponse.Merge(m, src)
+}
+func (m *LogoutResponse) XXX_Size() int {
+	return xxx_messageInfo_LogoutResponse.Size(m)
+}
+func (m *LogoutResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_LogoutResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_LogoutResponse proto.InternalMessageInfo
+
+func (m *LogoutResponse) GetSuccess() bool {
+	if m != nil {
+		return m.Success
+	}
+	return false
+}
+
+func (m *LogoutResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*CheckTokenRequest)(nil), "authdashboardpb.CheckTokenRequest")
 	proto.RegisterType((*CheckTokenResponse)(nil), "authdashboardpb.CheckTokenResponse")
+	proto.RegisterType((*UserDetailsRequest)(nil), "authdashboardpb.UserDetailsRequest")
+	proto.RegisterType((*UserDetailsResponse)(nil), "authdashboardpb.UserDetailsResponse")
+	proto.RegisterType((*CurrentSessionDetailsRequest)(nil), "authdashboardpb.CurrentSessionDetailsRequest")
+	proto.RegisterType((*CurrentSessionDetailsResponse)(nil), "authdashboardpb.CurrentSessionDetailsResponse")
+	proto.RegisterType((*SessionDetailsRequest)(nil), "authdashboardpb.SessionDetailsRequest")
+	proto.RegisterType((*SessionDetailLimited)(nil), "authdashboardpb.SessionDetailLimited")
+	proto.RegisterType((*SessionDetailsResponse)(nil), "authdashboardpb.SessionDetailsResponse")
+	proto.RegisterType((*LogoutRequest)(nil), "authdashboardpb.LogoutRequest")
+	proto.RegisterType((*LogoutResponse)(nil), "authdashboardpb.LogoutResponse")
 }
 
 func init() { proto.RegisterFile("authdashboardpb.proto", fileDescriptor_d2738454257fa90a) }
 
 var fileDescriptor_d2738454257fa90a = []byte{
-	// 173 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x4d, 0x2c, 0x2d, 0xc9,
-	0x48, 0x49, 0x2c, 0xce, 0x48, 0xca, 0x4f, 0x2c, 0x4a, 0x29, 0x48, 0xd2, 0x2b, 0x28, 0xca, 0x2f,
-	0xc9, 0x17, 0xe2, 0x47, 0x13, 0x56, 0x12, 0xe6, 0x12, 0x74, 0xce, 0x48, 0x4d, 0xce, 0x0e, 0xc9,
-	0xcf, 0x4e, 0xcd, 0x0b, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x51, 0xf2, 0xe0, 0x12, 0x42, 0x16,
-	0x2c, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0x15, 0x92, 0xe0, 0x62, 0x2f, 0x2e, 0x4d, 0x4e, 0x4e, 0x2d,
-	0x2e, 0x96, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x08, 0x82, 0x71, 0x41, 0x32, 0xb9, 0xa9, 0xc5, 0xc5,
-	0x89, 0xe9, 0xa9, 0x12, 0x4c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x30, 0xae, 0x51, 0x3e, 0x97, 0x88,
-	0x63, 0x69, 0x49, 0x86, 0x0b, 0xcc, 0xc6, 0xe0, 0xd4, 0xa2, 0xb2, 0xcc, 0xe4, 0x54, 0xa1, 0x70,
-	0x2e, 0x2e, 0x84, 0x0d, 0x42, 0x4a, 0x7a, 0xe8, 0xae, 0xc5, 0x70, 0x93, 0x94, 0x32, 0x5e, 0x35,
-	0x10, 0x27, 0x2a, 0x31, 0x38, 0x09, 0x46, 0xa1, 0x7b, 0x31, 0x89, 0x0d, 0xec, 0x75, 0x63, 0x40,
-	0x00, 0x00, 0x00, 0xff, 0xff, 0xd0, 0x49, 0x60, 0xc1, 0x13, 0x01, 0x00, 0x00,
+	// 614 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x55, 0xcd, 0x4e, 0xdb, 0x4c,
+	0x14, 0xfd, 0x1c, 0x43, 0x20, 0x37, 0x1f, 0x41, 0x0c, 0x81, 0x5a, 0x11, 0xa5, 0x91, 0x4b, 0x29,
+	0x9b, 0xb2, 0xa0, 0x4f, 0xd0, 0xc2, 0xa2, 0x52, 0xa1, 0xaa, 0x0c, 0xb4, 0x12, 0x3b, 0xc7, 0xb9,
+	0x38, 0x23, 0x1c, 0x8f, 0x3b, 0x33, 0xa6, 0xf0, 0x2c, 0x7d, 0xa2, 0xbe, 0x4a, 0x5f, 0xa0, 0xdb,
+	0x6a, 0x66, 0xfc, 0x13, 0xdb, 0x49, 0xa8, 0xba, 0xf3, 0x39, 0xe7, 0xfe, 0xce, 0x9d, 0xb9, 0x86,
+	0x1d, 0x3f, 0x95, 0x93, 0xb1, 0x2f, 0x26, 0x23, 0xe6, 0xf3, 0x71, 0x32, 0x3a, 0x4e, 0x38, 0x93,
+	0x8c, 0x6c, 0xd6, 0x68, 0x77, 0x1b, 0xb6, 0x4e, 0x27, 0x18, 0xdc, 0x5d, 0xb1, 0x3b, 0x8c, 0x3d,
+	0xfc, 0x96, 0xa2, 0x90, 0xee, 0x07, 0x20, 0xb3, 0xa4, 0x48, 0x58, 0x2c, 0x90, 0x38, 0xb0, 0x26,
+	0xd2, 0x20, 0x40, 0x21, 0x1c, 0x6b, 0x68, 0x1d, 0xad, 0x7b, 0x39, 0x54, 0xca, 0x14, 0x85, 0xf0,
+	0x43, 0x74, 0x5a, 0x43, 0xeb, 0xa8, 0xe3, 0xe5, 0xd0, 0xed, 0x03, 0xb9, 0x16, 0xc8, 0xcf, 0x50,
+	0xfa, 0x34, 0x12, 0x79, 0xfc, 0x1f, 0x16, 0x6c, 0x57, 0xe8, 0x27, 0x33, 0x0c, 0x60, 0x3d, 0x15,
+	0xc8, 0x63, 0x7f, 0x9a, 0xa7, 0x28, 0x30, 0xd9, 0x83, 0xce, 0x2d, 0xe5, 0x42, 0x6a, 0xd1, 0xd6,
+	0x62, 0x49, 0x28, 0xcf, 0xc8, 0xcf, 0xc4, 0x15, 0xe3, 0x99, 0x63, 0xd2, 0x87, 0x55, 0x9c, 0xfa,
+	0x34, 0x72, 0x56, 0xb5, 0x60, 0x80, 0xbb, 0x0f, 0x7b, 0xa7, 0x29, 0xe7, 0x18, 0xcb, 0x4b, 0x14,
+	0x82, 0xb2, 0xb8, 0x56, 0xfd, 0x4f, 0x0b, 0x9e, 0x2f, 0x30, 0xc8, 0xfa, 0x38, 0x84, 0x9e, 0x1f,
+	0x48, 0x7a, 0x8f, 0xc2, 0xe8, 0xa6, 0x1d, 0xdb, 0xab, 0xb1, 0xc4, 0x85, 0xff, 0x0d, 0x23, 0xd5,
+	0x41, 0x0b, 0xdd, 0x99, 0xed, 0x55, 0x38, 0xd2, 0x83, 0x16, 0x4d, 0xb2, 0xb6, 0x5a, 0x34, 0x21,
+	0x04, 0x56, 0x02, 0x2a, 0x1f, 0xb3, 0x5e, 0xf4, 0xb7, 0xe9, 0x51, 0x52, 0x99, 0x8e, 0x51, 0xb7,
+	0xd2, 0xf2, 0x0a, 0xac, 0x4e, 0x27, 0x62, 0x71, 0x68, 0xc4, 0xb6, 0x16, 0x4b, 0xc2, 0x7d, 0x06,
+	0x3b, 0xf3, 0x9b, 0xfc, 0xd5, 0x82, 0x7e, 0x45, 0x39, 0xa7, 0x53, 0x2a, 0x71, 0xac, 0xce, 0x4c,
+	0x57, 0xa6, 0x5b, 0xea, 0x78, 0x06, 0x90, 0x5d, 0x68, 0x0b, 0xe9, 0xcb, 0x54, 0x64, 0xd3, 0xc9,
+	0x10, 0xd9, 0x07, 0x88, 0x58, 0x18, 0xe2, 0xf8, 0x8a, 0x66, 0xc3, 0xb1, 0xbd, 0x19, 0x86, 0x1c,
+	0xc0, 0x46, 0x89, 0xae, 0xaf, 0x4e, 0xb3, 0xb6, 0xaa, 0xa4, 0x8a, 0x82, 0x0f, 0x09, 0xe5, 0x8f,
+	0x3a, 0xca, 0xaa, 0x89, 0x52, 0x32, 0x2a, 0x4a, 0x89, 0x54, 0x94, 0xb6, 0x89, 0x52, 0x21, 0x55,
+	0x8d, 0x17, 0x6c, 0x44, 0x23, 0x74, 0xd6, 0xf4, 0xe5, 0xca, 0x10, 0x19, 0x42, 0x77, 0xc4, 0xd9,
+	0x77, 0x81, 0xfc, 0x93, 0xba, 0x24, 0xeb, 0xda, 0x77, 0x96, 0x52, 0xf3, 0xcc, 0xe0, 0x17, 0xe4,
+	0xea, 0x48, 0x9c, 0x8e, 0x36, 0xaa, 0xb1, 0x2a, 0x03, 0x13, 0x3a, 0x08, 0x98, 0x53, 0x30, 0x48,
+	0xd5, 0xcf, 0xc4, 0xe7, 0xc8, 0x97, 0xb7, 0x8c, 0x4f, 0x9d, 0xae, 0xd6, 0x66, 0x18, 0x37, 0x84,
+	0xdd, 0x05, 0x37, 0xe9, 0x02, 0x7a, 0xa2, 0xa2, 0x38, 0xd6, 0xd0, 0x3e, 0xea, 0x9e, 0xbc, 0x3a,
+	0xae, 0xbf, 0xef, 0x79, 0xc3, 0xf2, 0x6a, 0xce, 0xee, 0x26, 0x6c, 0x9c, 0xb3, 0x90, 0xa5, 0x32,
+	0x1f, 0xf3, 0x19, 0xf4, 0x72, 0xe2, 0xdf, 0x5f, 0xf9, 0xc9, 0x6f, 0x1b, 0xfa, 0xef, 0x52, 0x39,
+	0x39, 0xcb, 0xeb, 0xb9, 0x44, 0x7e, 0x4f, 0x03, 0x24, 0x5f, 0x01, 0xca, 0x45, 0x42, 0xdc, 0x46,
+	0xd1, 0x8d, 0xd5, 0x33, 0x78, 0xb9, 0xd4, 0xc6, 0xd4, 0xe8, 0xfe, 0x47, 0x6e, 0xa0, 0x3b, 0xb3,
+	0x40, 0x48, 0xd3, 0xab, 0xb9, 0x75, 0x06, 0x07, 0xcb, 0x8d, 0x8a, 0xd8, 0x0f, 0xb0, 0x33, 0xf7,
+	0x79, 0x93, 0x37, 0xcd, 0xda, 0x96, 0xec, 0x89, 0xc1, 0xf1, 0xdf, 0x9a, 0x17, 0x99, 0x03, 0xe8,
+	0xd5, 0x52, 0x1e, 0x2e, 0x9f, 0x73, 0x91, 0xeb, 0xf5, 0x93, 0x76, 0x45, 0x92, 0x8f, 0xd0, 0x36,
+	0x23, 0x27, 0xfb, 0x0d, 0xa7, 0xca, 0xe5, 0x18, 0xbc, 0x58, 0xa8, 0xe7, 0xc1, 0xde, 0x6f, 0xdd,
+	0xd4, 0xff, 0x28, 0xa3, 0xb6, 0xfe, 0xd3, 0xbc, 0xfd, 0x13, 0x00, 0x00, 0xff, 0xff, 0x5a, 0x71,
+	0x64, 0x4f, 0x82, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -137,6 +653,10 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type AuthDashboardServiceClient interface {
 	CheckToken(ctx context.Context, in *CheckTokenRequest, opts ...grpc.CallOption) (*CheckTokenResponse, error)
+	UserDetails(ctx context.Context, in *UserDetailsRequest, opts ...grpc.CallOption) (*UserDetailsResponse, error)
+	CurrentSessionDetails(ctx context.Context, in *CurrentSessionDetailsRequest, opts ...grpc.CallOption) (*CurrentSessionDetailsResponse, error)
+	SessionDetails(ctx context.Context, in *SessionDetailsRequest, opts ...grpc.CallOption) (*SessionDetailsResponse, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 }
 
 type authDashboardServiceClient struct {
@@ -156,9 +676,49 @@ func (c *authDashboardServiceClient) CheckToken(ctx context.Context, in *CheckTo
 	return out, nil
 }
 
+func (c *authDashboardServiceClient) UserDetails(ctx context.Context, in *UserDetailsRequest, opts ...grpc.CallOption) (*UserDetailsResponse, error) {
+	out := new(UserDetailsResponse)
+	err := c.cc.Invoke(ctx, "/authdashboardpb.AuthDashboardService/UserDetails", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authDashboardServiceClient) CurrentSessionDetails(ctx context.Context, in *CurrentSessionDetailsRequest, opts ...grpc.CallOption) (*CurrentSessionDetailsResponse, error) {
+	out := new(CurrentSessionDetailsResponse)
+	err := c.cc.Invoke(ctx, "/authdashboardpb.AuthDashboardService/CurrentSessionDetails", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authDashboardServiceClient) SessionDetails(ctx context.Context, in *SessionDetailsRequest, opts ...grpc.CallOption) (*SessionDetailsResponse, error) {
+	out := new(SessionDetailsResponse)
+	err := c.cc.Invoke(ctx, "/authdashboardpb.AuthDashboardService/SessionDetails", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authDashboardServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error) {
+	out := new(LogoutResponse)
+	err := c.cc.Invoke(ctx, "/authdashboardpb.AuthDashboardService/Logout", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AuthDashboardServiceServer is the server API for AuthDashboardService service.
 type AuthDashboardServiceServer interface {
 	CheckToken(context.Context, *CheckTokenRequest) (*CheckTokenResponse, error)
+	UserDetails(context.Context, *UserDetailsRequest) (*UserDetailsResponse, error)
+	CurrentSessionDetails(context.Context, *CurrentSessionDetailsRequest) (*CurrentSessionDetailsResponse, error)
+	SessionDetails(context.Context, *SessionDetailsRequest) (*SessionDetailsResponse, error)
+	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 }
 
 // UnimplementedAuthDashboardServiceServer can be embedded to have forward compatible implementations.
@@ -167,6 +727,18 @@ type UnimplementedAuthDashboardServiceServer struct {
 
 func (*UnimplementedAuthDashboardServiceServer) CheckToken(ctx context.Context, req *CheckTokenRequest) (*CheckTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
+}
+func (*UnimplementedAuthDashboardServiceServer) UserDetails(ctx context.Context, req *UserDetailsRequest) (*UserDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserDetails not implemented")
+}
+func (*UnimplementedAuthDashboardServiceServer) CurrentSessionDetails(ctx context.Context, req *CurrentSessionDetailsRequest) (*CurrentSessionDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CurrentSessionDetails not implemented")
+}
+func (*UnimplementedAuthDashboardServiceServer) SessionDetails(ctx context.Context, req *SessionDetailsRequest) (*SessionDetailsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SessionDetails not implemented")
+}
+func (*UnimplementedAuthDashboardServiceServer) Logout(ctx context.Context, req *LogoutRequest) (*LogoutResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
 
 func RegisterAuthDashboardServiceServer(s *grpc.Server, srv AuthDashboardServiceServer) {
@@ -191,6 +763,78 @@ func _AuthDashboardService_CheckToken_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthDashboardService_UserDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthDashboardServiceServer).UserDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/authdashboardpb.AuthDashboardService/UserDetails",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthDashboardServiceServer).UserDetails(ctx, req.(*UserDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthDashboardService_CurrentSessionDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CurrentSessionDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthDashboardServiceServer).CurrentSessionDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/authdashboardpb.AuthDashboardService/CurrentSessionDetails",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthDashboardServiceServer).CurrentSessionDetails(ctx, req.(*CurrentSessionDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthDashboardService_SessionDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SessionDetailsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthDashboardServiceServer).SessionDetails(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/authdashboardpb.AuthDashboardService/SessionDetails",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthDashboardServiceServer).SessionDetails(ctx, req.(*SessionDetailsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthDashboardService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogoutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthDashboardServiceServer).Logout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/authdashboardpb.AuthDashboardService/Logout",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthDashboardServiceServer).Logout(ctx, req.(*LogoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _AuthDashboardService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "authdashboardpb.AuthDashboardService",
 	HandlerType: (*AuthDashboardServiceServer)(nil),
@@ -198,6 +842,22 @@ var _AuthDashboardService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckToken",
 			Handler:    _AuthDashboardService_CheckToken_Handler,
+		},
+		{
+			MethodName: "UserDetails",
+			Handler:    _AuthDashboardService_UserDetails_Handler,
+		},
+		{
+			MethodName: "CurrentSessionDetails",
+			Handler:    _AuthDashboardService_CurrentSessionDetails_Handler,
+		},
+		{
+			MethodName: "SessionDetails",
+			Handler:    _AuthDashboardService_SessionDetails_Handler,
+		},
+		{
+			MethodName: "Logout",
+			Handler:    _AuthDashboardService_Logout_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

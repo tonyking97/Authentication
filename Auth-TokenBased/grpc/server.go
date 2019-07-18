@@ -24,7 +24,7 @@ func StartServer() error {
 	s:=grpc.NewServer( options... )
 
 	authpb.RegisterAuthServiceServer(s, &server{})
-	authdashboardpb.RegisterAuthDashboardServiceServer(s,&serverdashboard{})
+	authdashboardpb.RegisterAuthDashboardServiceServer(s,&authdashboard{})
 
 	reflection.Register(s)
 

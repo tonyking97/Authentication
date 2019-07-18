@@ -5,6 +5,6 @@ type CurrentSessionDetail_limited struct {
 	Active_Tokens   int64   `json:"active_token"`
 	Ip              string  `json:"ip"`
 	City            string  `json:"city"`
-	Latitude        float64 `json:"latitude"`
-	Longitude       float64 `json:"longitude"`
+	Latitude        float32 `json:"latitude"`
+	Longitude       float32 `json:"longitude"`
 }

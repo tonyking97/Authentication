@@ -1,7 +1,6 @@
 package core
 
 import (
-	"../models"
 	"context"
 	"go.mongodb.org/mongo-driver/bson"
 	"log"
@@ -12,6 +11,11 @@ import (
 * @Author : Arputha Tony King P @Created at : Apr 19
 * Definition : Contains method which checks the token expiry time and change the status to inactive while time expires.
  */
+
+type sessionDetails struct{
+	FS_Id      string    `bson:"fs_id"`
+	ExpiryTime int64     `bson:"expiry_Time"`
+}
 
 //Check Expiry time of token every minute and change the status
 func CheckTokenStatus() {
@@ -29,10 +33,10 @@ func CheckTokenStatus() {
 	}
 
 	for cur.Next(context.TODO()) {
-		var elem models.SessionDetails
+		var elem sessionDetails
 		err := cur.Decode(&elem)
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 		if elem.ExpiryTime < time.Now().Unix() {
 			filter = bson.D{
